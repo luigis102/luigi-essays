@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="author-intro">
+    <div class="author-intro-line"></div>
+    <div class="author-intro-content">
+        <!-- Placeholder for author image and introduction -->
+        <div class="author-intro-text">
+            [Your introduction will go here]
+        </div>
+    </div>
+    <div class="author-intro-line"></div>
+</div>
+
+<ul class="essay-list">
+    {% for essay in essays %}
+    <li class="essay-item">
+        <h2 class="essay-title">
+            <a href="{{ url_for('essay', path=essay.path.replace('essays/', '')) }}">
+                {{ essay.meta.title }}
+            </a>
+        </h2>
+        <div class="essay-meta">
+            {{ essay.meta.reading_time }} min read · {{ essay.meta.date }}
+        </div>
+        <div class="essay-preview">
+            {{ essay.meta.description }}
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

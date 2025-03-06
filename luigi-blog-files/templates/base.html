@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Luigi's Essays{% endblock %}</title>
+    <meta name="description" content="A collection of personal essays and thoughts">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <a href="{{ url_for('index') }}" class="site-title">Luigi</a>
+                <nav>
+                    <a href="https://x.com/luigialemanno_">Twitter</a>
+                    <a href="mailto:alemannol95@icloud.com">Email</a>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            {% if error %}
+                <div class="error">{{ error }}</div>
+            {% else %}
+                {% block content %}{% endblock %}
+            {% endif %}
+        </main>
+    </div>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

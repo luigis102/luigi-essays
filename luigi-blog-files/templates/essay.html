@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}{{ essay.meta.title }}{% endblock %}
+
+{% block content %}
+<div class="reading-progress-container">
+    <div class="reading-progress-bar"></div>
+</div>
+<article class="essay-container">
+    <h1 class="essay-title">{{ essay.meta.title }}</h1>
+    <div class="essay-meta">
+        {{ essay.meta.reading_time }} min read · {{ essay.meta.date }}
+    </div>
+
+    <div class="essay-intro">
+        <div class="essay-intro-line"></div>
+        <div class="essay-intro-content">
+            {% if essay.meta.description %}
+            <p>{{ essay.meta.description }}</p>
+            {% else %}
+            <p>Introduzione all'articolo "{{ essay.meta.title }}"</p>
+            {% endif %}
+        </div>
+        <div class="essay-intro-line"></div>
+    </div>
+
+    <div class="essay-content">
+        {{ essay.html|safe }}
+    </div>
+</article>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('scroll', function() {
+    const winScroll = document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.querySelector(".reading-progress-bar").style.width = scrolled + "%";
+});
+</script>
+{% endblock %}

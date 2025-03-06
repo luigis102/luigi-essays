@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Archive{% endblock %}
+
+{% block content %}
+<h1>Archive</h1>
+<ul class="essay-list">
+    {% for essay in essays %}
+    <li class="essay-item">
+        <h2 class="essay-title">
+            <a href="{{ url_for('essay', path=essay.path.replace('essays/', '')) }}">
+                {{ essay.meta.title }}
+            </a>
+        </h2>
+        <div class="essay-meta">{{ essay.meta.date }}</div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
